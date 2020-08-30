@@ -1,4 +1,4 @@
-package lecture1;
+package analysisofalgo.lecture1;
 
 /**
  * Linear Search
