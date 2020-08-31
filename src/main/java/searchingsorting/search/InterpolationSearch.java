@@ -22,7 +22,7 @@ public class InterpolationSearch {
 
         int[] in = Stream.of(input.split("\\s+")).mapToInt(Integer::parseInt).toArray();
 
-       // int n = in.length-1;
+        // int n = in.length-1;
 
         int start = 0;
         int end = in.length-1;
