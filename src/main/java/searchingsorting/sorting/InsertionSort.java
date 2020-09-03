@@ -21,6 +21,8 @@ public class InsertionSort {
         System.out.println("\nUsing the Insertion Sort ...");
         insertionSort(input);
 
+        System.out.println("\n Using Binary Insertion Sort");
+        binaryinsertSort(input) ;
     }
 
 
@@ -56,6 +58,28 @@ public class InsertionSort {
             arr[j+1] = current ;
         }
 
+
+        Arrays.stream(arr).forEach(i -> System.out.print(i + " "));
+    }
+
+    private static void binaryinsertSort(String input){
+
+        int[] arr = Stream.of(input.split("\\s+")).mapToInt(Integer::parseInt).toArray() ;
+
+        for (int i = 0; i < arr.length; i++) {
+
+            int current = arr[i] ;
+
+            // finding location to insert in position
+            int j = Math.abs(Arrays.binarySearch(arr,0,i,current) + 1) ;
+
+            // shifting array to one location right
+            System.arraycopy(arr,j,arr,j+1,i-j);
+
+            // put key in correct position.
+            arr[j] = current ;
+
+        }
 
         Arrays.stream(arr).forEach(i -> System.out.print(i + " "));
     }
