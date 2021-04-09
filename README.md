@@ -1,60 +1,218 @@
-# Worst Case , Best Case and Average Case 
+# myApp
 
-We can have three cases to analyze an algorithm:
+This application was generated using JHipster 7.0.1, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v7.0.1](https://www.jhipster.tech/documentation-archive/v7.0.1).
 
-1) Worst Case
-2) Average Case
-3) Best Case
+## Development
 
+Before you can build this project, you must install and configure the following dependencies on your machine:
 
-Worst Case Analysis (Usually Done)
+1. [Node.js][]: We use Node to run a development web server and build the project.
+   Depending on your system, you can install Node either from source or as a pre-packaged bundle.
 
-In the worst case analysis, we calculate upper bound on running time of an algorithm. 
-We must know the case that causes maximum number of operations to be executed.
+After installing Node, you should be able to run the following command to install development tools.
+You will only need to run this command when dependencies change in [package.json](package.json).
 
-For Linear Search, the worst case happens when the element to be searched (x in the above code) is not present in the array. 
-When x is not present, the search() functions compares it with all the elements of arr[] one by one. 
+```
+npm install
+```
 
-Therefore, the worst case time complexity of linear search would be Θ(n).
+We use npm scripts and [Angular CLI][] with [Webpack][] as our build system.
 
-Average Case Analysis (Sometimes done)
+Run the following commands in two separate terminals to create a blissful development experience where your browser
+auto-refreshes when files change on your hard drive.
 
-In average case analysis, we take all possible inputs and calculate computing time for all of the inputs. 
+```
+./mvnw
+npm start
+```
 
-Sum all the calculated values and divide the sum by total number of inputs. 
+Npm is also used to manage CSS and JavaScript dependencies used in this application. You can upgrade dependencies by
+specifying a newer version in [package.json](package.json). You can also run `npm update` and `npm install` to manage dependencies.
+Add the `help` flag on any command to see how you can use it. For example, `npm help update`.
 
-We must know (or predict) distribution of cases. 
+The `npm run` command will list all of the scripts available to run for this project.
 
-For the linear search problem, let us assume that all cases are uniformly distributed (including the case of x not being present in array). 
+### PWA Support
 
-So we sum all the cases and divide the sum by (n+1).
+JHipster ships with PWA (Progressive Web App) support, and it's turned off by default. One of the main components of a PWA is a service worker.
 
- Following is the value of average case time complexity.
+The service worker initialization code is disabled by default. To enable it, uncomment the following code in `src/main/webapp/app/app.module.ts`:
 
+```typescript
+ServiceWorkerModule.register('ngsw-worker.js', { enabled: false }),
+```
 
+### Managing dependencies
 
-Best Case Analysis (Bogus)
+For example, to add [Leaflet][] library as a runtime dependency of your application, you would run following command:
 
-In the best case analysis, we calculate lower bound on running time of an algorithm. 
+```
+npm install --save --save-exact leaflet
+```
 
-We must know the case that causes minimum number of operations to be executed.
+To benefit from TypeScript type definitions from [DefinitelyTyped][] repository in development, you would run following command:
 
- In the linear search problem, the best case occurs when x is present at the first location. The number of operations in the best case is constant (not dependent on n). 
+```
+npm install --save-dev --save-exact @types/leaflet
+```
 
-So time complexity in the best case would be Θ(1)
+Then you would import the JS and CSS files specified in library's installation instructions so that [Webpack][] knows about them:
+Edit [src/main/webapp/app/app.module.ts](src/main/webapp/app/app.module.ts) file:
 
-Most of the times, we do worst case analysis to analyze algorithms. In the worst analysis, we guarantee an upper bound on the running time of an algorithm which is good information.
+```
+import 'leaflet/dist/leaflet.js';
+```
 
-The average case analysis is not easy to do in most of the practical cases and it is rarely done. In the average case analysis, we must know (or predict) the mathematical distribution of all possible inputs.
+Edit [src/main/webapp/content/scss/vendor.scss](src/main/webapp/content/scss/vendor.scss) file:
 
-The Best Case analysis is bogus. Guaranteeing a lower bound on an algorithm doesn’t provide any information as in the worst case, an algorithm may take years to run.
+```
+@import '~leaflet/dist/leaflet.css';
+```
 
-For some algorithms, all the cases are asymptotically same, i.e., there are no worst and best cases. For example, Merge Sort. Merge Sort does Θ(nLogn) operations in all cases.
+Note: There are still a few other things remaining to do for Leaflet that we won't detail here.
 
+For further instructions on how to develop with JHipster, have a look at [Using JHipster in development][].
 
-Most of the other sorting algorithms have worst and best cases.
+### Using Angular CLI
 
-For example, in the typical implementation of Quick Sort (where pivot is chosen as a corner element), the worst occurs when the input array is already sorted and the best occur when the pivot elements always divide array in two halves. 
+You can also use [Angular CLI][] to generate some custom client code.
 
-For insertion sort, the worst case occurs when the array is reverse sorted and the best case occurs when the array is sorted in the same order as output.
+For example, the following command:
 
+```
+ng generate component my-component
+```
+
+will generate few files:
+
+```
+create src/main/webapp/app/my-component/my-component.component.html
+create src/main/webapp/app/my-component/my-component.component.ts
+update src/main/webapp/app/app.module.ts
+```
+
+## Building for production
+
+### Packaging as jar
+
+To build the final jar and optimize the myApp application for production, run:
+
+```
+./mvnw -Pprod clean verify
+```
+
+This will concatenate and minify the client CSS and JavaScript files. It will also modify `index.html` so it references these new files.
+To ensure everything worked, run:
+
+```
+java -jar target/*.jar
+```
+
+Then navigate to [http://localhost:8080](http://localhost:8080) in your browser.
+
+Refer to [Using JHipster in production][] for more details.
+
+### Packaging as war
+
+To package your application as a war in order to deploy it to an application server, run:
+
+```
+./mvnw -Pprod,war clean verify
+```
+
+## Testing
+
+To launch your application's tests, run:
+
+```
+./mvnw verify
+```
+
+### Client tests
+
+Unit tests are run by [Jest][]. They're located in [src/test/javascript/](src/test/javascript/) and can be run with:
+
+```
+npm test
+```
+
+For more information, refer to the [Running tests page][].
+
+### Code quality
+
+Sonar is used to analyse code quality. You can start a local Sonar server (accessible on http://localhost:9001) with:
+
+```
+docker-compose -f src/main/docker/sonar.yml up -d
+```
+
+Note: we have turned off authentication in [src/main/docker/sonar.yml](src/main/docker/sonar.yml) for out of the box experience while trying out SonarQube, for real use cases turn it back on.
+
+You can run a Sonar analysis with using the [sonar-scanner](https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner) or by using the maven plugin.
+
+Then, run a Sonar analysis:
+
+```
+./mvnw -Pprod clean verify sonar:sonar
+```
+
+If you need to re-run the Sonar phase, please be sure to specify at least the `initialize` phase since Sonar properties are loaded from the sonar-project.properties file.
+
+```
+./mvnw initialize sonar:sonar
+```
+
+For more information, refer to the [Code quality page][].
+
+## Using Docker to simplify development (optional)
+
+You can use Docker to improve your JHipster development experience. A number of docker-compose configuration are available in the [src/main/docker](src/main/docker) folder to launch required third party services.
+
+For example, to start a mysql database in a docker container, run:
+
+```
+docker-compose -f src/main/docker/mysql.yml up -d
+```
+
+To stop it and remove the container, run:
+
+```
+docker-compose -f src/main/docker/mysql.yml down
+```
+
+You can also fully dockerize your application and all the services that it depends on.
+To achieve this, first build a docker image of your app by running:
+
+```
+./mvnw -Pprod verify jib:dockerBuild
+```
+
+Then run:
+
+```
+docker-compose -f src/main/docker/app.yml up -d
+```
+
+For more information refer to [Using Docker and Docker-Compose][], this page also contains information on the docker-compose sub-generator (`jhipster docker-compose`), which is able to generate docker configurations for one or several JHipster applications.
+
+## Continuous Integration (optional)
+
+To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`), this will let you generate configuration files for a number of Continuous Integration systems. Consult the [Setting up Continuous Integration][] page for more information.
+
+[jhipster homepage and latest documentation]: https://www.jhipster.tech
+[jhipster 7.0.1 archive]: https://www.jhipster.tech/documentation-archive/v7.0.1
+[using jhipster in development]: https://www.jhipster.tech/documentation-archive/v7.0.1/development/
+[using docker and docker-compose]: https://www.jhipster.tech/documentation-archive/v7.0.1/docker-compose
+[using jhipster in production]: https://www.jhipster.tech/documentation-archive/v7.0.1/production/
+[running tests page]: https://www.jhipster.tech/documentation-archive/v7.0.1/running-tests/
+[code quality page]: https://www.jhipster.tech/documentation-archive/v7.0.1/code-quality/
+[setting up continuous integration]: https://www.jhipster.tech/documentation-archive/v7.0.1/setting-up-ci/
+[node.js]: https://nodejs.org/
+[webpack]: https://webpack.github.io/
+[angular cli]: https://cli.angular.io/
+[browsersync]: https://www.browsersync.io/
+[jest]: https://facebook.github.io/jest/
+[jasmine]: https://jasmine.github.io/2.0/introduction.html
+[protractor]: https://angular.github.io/protractor/
+[leaflet]: https://leafletjs.com/
+[definitelytyped]: https://definitelytyped.org/
