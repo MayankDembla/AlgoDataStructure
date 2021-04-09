@@ -1,0 +1,60 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="customer">
+      <h2 data-cy="customerDetailsHeading"><span jhiTranslate="myApp.customer.detail.title">Customer</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="myApp.customer.id">Id</span></dt>
+        <dd>
+          <span>{{ customer.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.customer.name">Name</span></dt>
+        <dd>
+          <span>{{ customer.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.customer.token">Token</span></dt>
+        <dd>
+          <span>{{ customer.token }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.customer.phone">Phone</span></dt>
+        <dd>
+          <span>{{ customer.phone }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.customer.sphone">Sphone</span></dt>
+        <dd>
+          <span>{{ customer.sphone }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.customer.email">Email</span></dt>
+        <dd>
+          <span>{{ customer.email }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.customer.active">Active</span></dt>
+        <dd>
+          <span>{{ customer.active }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.customer.isFirstBooking">Is First Booking</span></dt>
+        <dd>
+          <span>{{ customer.isFirstBooking }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.customer.timecreated">Timecreated</span></dt>
+        <dd>
+          <span>{{ customer.timecreated | formatMediumDatetime }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/customer', customer.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
