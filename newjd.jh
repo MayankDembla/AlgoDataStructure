@@ -1,0 +1,49 @@
+
+application {
+  config {
+    baseName myApp,
+    applicationType monolith,
+    packageName com.townz,
+    authenticationType jwt,
+    prodDatabaseType mysql,
+    clientFramework angular
+  }
+  entities *
+}
+
+entity Customer {
+
+   id Long, 
+   name String,
+   token String, 
+   phone String, 
+   sphone String, 
+   email String,
+   active Boolean, 
+   isFirstBooking Boolean, 
+   timecreated Instant 
+}
+
+entity Address {
+   
+   id Long, 
+   address String, 
+   location String, 
+   pincode Long 
+  
+}
+
+entity City {
+   id Long, 
+   name String
+}
+
+
+relationship OneToMany{
+     Customer{address} to Address
+}
+
+relationship OneToOne{
+    City{address} to Address{city}
+}
+    
